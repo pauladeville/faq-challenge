@@ -1,0 +1,89 @@
+$text-color: hsl(238, 29%, 16%);
+$icon-color: hsl(14, 88%, 65%);
+$selected-text-color: hsl(237, 12%, 33%);
+$answer-color: hsl(240, 6%, 50%);
+$dividers-color: hsl(240, 5%, 91%);
+$gradient-start: hsl(273, 75%, 66%);
+$gradient-end: hsl(240, 73%, 65%);
+
+body {
+    font-family: 'Kumbh Sans', sans-serif;
+    background: linear-gradient($gradient-start, $gradient-end);
+}
+
+#img-woman-mobile {
+    display: block;
+    position: relative;
+    margin: auto;
+    left: -20px;
+    top: 50px;
+    z-index: 5;
+    //Ombre qui épouse la forme du PNG
+    filter: drop-shadow(0px 30px 0px $dividers-color);
+}
+
+article {
+    background-color: white;
+    padding: 110px 30px 30px 30px;
+    border-radius: 20px;
+    position: static;
+    width: 75%;
+    margin: 0px auto 50px auto;
+    position: relative;
+    top: -40px;
+    //Ombre uniquement en bas de l'article
+    &::after {
+        content:"";
+        position: absolute;
+        width: 78%;
+        height: 0px;
+        bottom: 0px;
+        z-index: -1;
+        box-shadow: 0px 10px 30px 10px hsl(240, 41%, 32%);
+    }
+    h1 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 40px;
+        color: $text-color;
+    }
+    p {
+        font-size: 0.8rem;
+        line-height: 1.2rem;
+    }
+}
+
+.question-block {
+    border-bottom: 1px solid $dividers-color;
+    margin: 20px 0 20px 0;
+    &:hover > .answer {
+        height: 50px;
+    }
+    &:hover > .question {
+        font-weight: bold;
+    }
+}
+.question {
+    color: $text-color;
+    position: relative;
+    transition: all 300ms ease-in-out;
+}
+.answer {
+    color: $answer-color;
+    height: 0;
+    overflow: hidden;
+    transition: all 300ms ease-in-out;
+}
+.arrow{
+    position: absolute;
+    right: 30px;
+    top: 5px;
+}
+
+.attribution {
+    font-size: 11px;
+    text-align: center;
+    a {
+        color: hsl(228, 45%, 44%);
+    }
+}
