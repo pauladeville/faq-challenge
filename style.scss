@@ -20,22 +20,14 @@ body {
     height: 100%;
 }
 
-#main-wrapper {
-    width: 100%;
-    @include mQ($desktop-breakpoint) {
-    }
-}
-
 #img-woman-mobile {
     z-index: 5;
     position: absolute;
     top: -10px;
     padding-right: 30px;
-    //Centrer un position absolute
     right: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    //Ombre qui épouse la forme du PNG
     filter: drop-shadow(0px 30px 0px $image-shadow-color);
     @include mQ($desktop-breakpoint) {
         display: none;
@@ -45,20 +37,15 @@ body {
 #img-woman-desktop {
     z-index: 5;
     display: none;
-    filter: drop-shadow(0px 70px 0px $image-shadow-color);
     @include mQ($desktop-breakpoint) {
         display: block;
         position: absolute;
         top: 50px;
         left: -80px;
-        &::after {
-            content:"";
-            width: 100%;
-        }
     }
 }
 
-#img-box-desktop {
+.img-box-desktop {
     display: none;
     z-index: 100;
     @include mQ($desktop-breakpoint) {
@@ -66,18 +53,29 @@ body {
         position: absolute;
         top: 345px;
         left: 115px;
-        transition: transform 300ms ease-in-out;
+        transition: transform 200ms ease-in-out;
     }
+    &--active {
+        transform: translateX(-37px);
+    }   
 }
-.translated-box {
-    transform: translateX(-37px);
+
+#img-pattern-desktop {
+    z-index: 1;
+    display: none;
+    @include mQ($desktop-breakpoint) {
+        display: block;
+        position: absolute;
+        top: -315px;
+        left: -572px;
+    }
 }
 
 article {
     background-color: white;
     padding: 30px 8% 30px 8%;
     border-radius: 20px;
-    margin: 160px 5% 50px 5%;
+    margin: 150px 5% 50px 5%;
     position: relative;
     box-shadow: -6px 0 transparent, 6px 0 transparent, 0 30px 20px -10px hsl(240, 40%, 49%);
     @include mQ($desktop-breakpoint) {
@@ -108,7 +106,6 @@ article {
     }
 }
 
-
 .accordion {
     border-bottom: 1px solid $dividers-color;
     margin: 20px 0 20px 0;
@@ -118,10 +115,6 @@ article {
         color: $icon-color;
         font-weight: bold;
     }
-    &:hover ~ img#img-box-desktop {
-        transform: translateX(50px);
-    }
-
 }
 
 .question {
@@ -129,18 +122,18 @@ article {
     position: relative;
     font-weight: 400;
     padding-right: 30px;
-}
-.selected-question {
-    font-weight: bold;
+    &--active {
+        font-weight: bold;
+    }
 }
 
 .answer {
     color: $answer-color;
     padding-right: 30px;
     display: none;
-}
-.displayed-answer {
-    display: block;
+    &--active {
+        display: block;
+    }
 }
 
 .arrow{
@@ -148,17 +141,7 @@ article {
     right: 0px;
     top: 5px;
     transform: rotate(0deg);
-    transition: all 1ms ease-in-out;
-}
-.upside-arrow {
-    transform: rotate(180deg);
-}
-
-
-.attribution {
-    font-size: 11px;
-    text-align: center;
-    a {
-        color: hsl(228, 45%, 44%);
+    &--active {
+        transform: rotate(180deg);
     }
 }
