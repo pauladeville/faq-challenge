@@ -33,7 +33,11 @@ body {
     display: block;
     position: absolute;
     top: 50px;
-    left: -70px;
+    left: -80px;
+  }
+  #img-woman-desktop::after {
+    content: "";
+    width: 100%;
   }
 }
 
@@ -45,30 +49,23 @@ body {
   #img-box-desktop {
     display: block;
     position: absolute;
-    top: 350px;
+    top: 345px;
     left: 115px;
+    transition: transform 300ms ease-in-out;
   }
+}
+
+.translated-box {
+  transform: translateX(-37px);
 }
 
 article {
   background-color: white;
   padding: 30px 8% 30px 8%;
   border-radius: 20px;
-  width: 75%;
-  margin: 160px auto 50px auto;
+  margin: 160px 5% 50px 5%;
   position: relative;
-}
-article::after {
-  content: "";
-  position: absolute;
-  width: 90%;
-  right: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 0px;
-  bottom: 0px;
-  z-index: -1;
-  box-shadow: 0px 10px 30px 10px #303073;
+  box-shadow: -6px 0 transparent, 6px 0 transparent, 0 30px 20px -10px #4b4baf;
 }
 @media screen and (min-width: 1200px) {
   article {
@@ -111,8 +108,8 @@ article p {
   color: #f47c57;
   font-weight: bold;
 }
-.accordion:hover ~ #img-box-desktop {
-  display: none;
+.accordion:hover ~ img#img-box-desktop {
+  transform: translateX(50px);
 }
 
 .question {

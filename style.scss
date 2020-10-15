@@ -50,7 +50,11 @@ body {
         display: block;
         position: absolute;
         top: 50px;
-        left: -70px;    
+        left: -80px;
+        &::after {
+            content:"";
+            width: 100%;
+        }
     }
 }
 
@@ -60,38 +64,28 @@ body {
     @include mQ($desktop-breakpoint) {
         display: block;
         position: absolute;
-        top: 350px;
+        top: 345px;
         left: 115px;
+        transition: transform 300ms ease-in-out;
     }
+}
+.translated-box {
+    transform: translateX(-37px);
 }
 
 article {
     background-color: white;
     padding: 30px 8% 30px 8%;
     border-radius: 20px;
-    width: 75%;
-    margin: 160px auto 50px auto;
+    margin: 160px 5% 50px 5%;
     position: relative;
-    //Ombre uniquement en bas de l'article
-    &::after {
-        content:"";
-        position: absolute;
-        width: 90%;
-        right: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        height: 0px;
-        bottom: 0px;
-        z-index: -1;
-        box-shadow: 0px 10px 30px 10px hsl(240, 41%, 32%);
-    }
+    box-shadow: -6px 0 transparent, 6px 0 transparent, 0 30px 20px -10px hsl(240, 40%, 49%);
     @include mQ($desktop-breakpoint) {
         padding-right: 13%;
         width: 50%;
         margin: 160px 200px 50px 200px;
         overflow: hidden;
     }
-
     h1 {
         text-align: center;
         font-size: 2rem;
@@ -124,8 +118,8 @@ article {
         color: $icon-color;
         font-weight: bold;
     }
-    &:hover ~ #img-box-desktop {
-        display: none;
+    &:hover ~ img#img-box-desktop {
+        transform: translateX(50px);
     }
 
 }
