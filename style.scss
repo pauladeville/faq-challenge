@@ -3,44 +3,95 @@ $icon-color: hsl(14, 88%, 65%);
 $selected-text-color: hsl(237, 12%, 33%);
 $answer-color: hsl(240, 6%, 50%);
 $dividers-color: hsl(240, 5%, 91%);
+$image-shadow-color: hsla(240, 73%, 65%, 0.1);
 $gradient-start: hsl(273, 75%, 66%);
 $gradient-end: hsl(240, 73%, 65%);
+$desktop-breakpoint: 1200px;
+
+@mixin mQ($size) {
+    @media screen and (min-width: $size){
+        @content;        
+    }    
+}
 
 body {
     font-family: 'Kumbh Sans', sans-serif;
-    background: linear-gradient($gradient-start, $gradient-end);
+    background: fixed no-repeat linear-gradient($gradient-start, $gradient-end);
+    height: 100%;
+}
+
+#main-wrapper {
+    width: 100%;
+    @include mQ($desktop-breakpoint) {
+    }
 }
 
 #img-woman-mobile {
-    display: block;
-    position: relative;
-    margin: auto;
-    left: -20px;
-    top: 50px;
     z-index: 5;
+    position: absolute;
+    top: -10px;
+    padding-right: 30px;
+    //Centrer un position absolute
+    right: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     //Ombre qui épouse la forme du PNG
-    filter: drop-shadow(0px 30px 0px $dividers-color);
+    filter: drop-shadow(0px 30px 0px $image-shadow-color);
+    @include mQ($desktop-breakpoint) {
+        display: none;
+    }
+}
+
+#img-woman-desktop {
+    z-index: 5;
+    display: none;
+    filter: drop-shadow(0px 70px 0px $image-shadow-color);
+    @include mQ($desktop-breakpoint) {
+        display: block;
+        position: absolute;
+        top: 50px;
+        left: -70px;    
+    }
+}
+
+#img-box-desktop {
+    display: none;
+    z-index: 100;
+    @include mQ($desktop-breakpoint) {
+        display: block;
+        position: absolute;
+        top: 350px;
+        left: 115px;
+    }
 }
 
 article {
     background-color: white;
-    padding: 110px 30px 30px 30px;
+    padding: 30px 8% 30px 8%;
     border-radius: 20px;
-    position: static;
     width: 75%;
-    margin: 0px auto 50px auto;
+    margin: 160px auto 50px auto;
     position: relative;
-    top: -40px;
     //Ombre uniquement en bas de l'article
     &::after {
         content:"";
         position: absolute;
-        width: 78%;
+        width: 90%;
+        right: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         height: 0px;
         bottom: 0px;
         z-index: -1;
         box-shadow: 0px 10px 30px 10px hsl(240, 41%, 32%);
     }
+    @include mQ($desktop-breakpoint) {
+        padding-right: 13%;
+        width: 50%;
+        margin: 160px 200px 50px 200px;
+        overflow: hidden;
+    }
+
     h1 {
         text-align: center;
         font-size: 2rem;
@@ -53,32 +104,62 @@ article {
     }
 }
 
-.question-block {
-    border-bottom: 1px solid $dividers-color;
-    margin: 20px 0 20px 0;
-    &:hover > .answer {
-        height: 50px;
-    }
-    &:hover > .question {
-        font-weight: bold;
+#faq {
+    width: 100%;
+    padding-top: 80px;
+    @include mQ($desktop-breakpoint) {
+        width: 50%;
+        margin-left: 60%;
+        padding: 0;
     }
 }
+
+
+.accordion {
+    border-bottom: 1px solid $dividers-color;
+    margin: 20px 0 20px 0;
+    cursor: pointer;
+    transition: 300ms;
+    &:hover > .question {
+        color: $icon-color;
+        font-weight: bold;
+    }
+    &:hover ~ #img-box-desktop {
+        display: none;
+    }
+
+}
+
 .question {
     color: $text-color;
     position: relative;
-    transition: all 300ms ease-in-out;
+    font-weight: 400;
+    padding-right: 30px;
 }
+.selected-question {
+    font-weight: bold;
+}
+
 .answer {
     color: $answer-color;
-    height: 0;
-    overflow: hidden;
-    transition: all 300ms ease-in-out;
+    padding-right: 30px;
+    display: none;
 }
+.displayed-answer {
+    display: block;
+}
+
 .arrow{
     position: absolute;
-    right: 30px;
+    right: 0px;
     top: 5px;
+    transform: rotate(0deg);
+    transition: all 1ms ease-in-out;
 }
+.upside-arrow {
+    transform: rotate(180deg);
+}
+
 
 .attribution {
     font-size: 11px;
