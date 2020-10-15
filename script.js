@@ -8,11 +8,9 @@ for (let accordion of accordions) {
     })
 };
 
-for (let accordion of accordions) {
-    accordion.addEventListener("mouseover", () => {
-        document.querySelector(".img-box-desktop").classList.add("img-box-desktop--active");
-    })
-    accordion.addEventListener("mouseout", () => {
-        document.querySelector(".img-box-desktop").classList.remove("img-box-desktop--active");     
-    })
-};
+document.getElementById("faq").addEventListener("mouseover", () => {
+    document.querySelector(".img-box-desktop").classList.add("img-box-desktop--active");
+})
+document.getElementById("faq").addEventListener("mouseout", () => {
+    document.querySelector(".img-box-desktop").classList.remove("img-box-desktop--active");     
+});
